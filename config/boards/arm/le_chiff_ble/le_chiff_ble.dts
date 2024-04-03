@@ -85,6 +85,11 @@
             label = "Red LED";
 		};
     };
+	 
+	soft_off_wakers {
+        compatible = "zmk,soft-off-wakeup-sources";
+        wakeup-sources = <&wakeup_source>;
+    };
 };
 
 &adc {
