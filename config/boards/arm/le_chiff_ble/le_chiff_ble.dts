@@ -58,6 +58,11 @@
 			, <&gpio1 12 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
 			;
 	};
+
+	 soft_off_wakers {
+        compatible = "zmk,soft-off-wakeup-sources";
+        wakeup-sources = <&kscan0>;
+    };
 	center_encoder: encoder_center {
 		compatible = "alps,ec11";
 		label = "CENTER_ENCODER";
@@ -86,6 +91,7 @@
     };
 	
 };
+
 
 &adc {
 	status = "okay";
