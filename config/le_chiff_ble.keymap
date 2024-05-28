@@ -102,7 +102,7 @@
         symbol_layer {
             bindings = <
 &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp LBKT   &kp RBKT        &kp POUND        &kp PERCENT       &kp PLUS   &kp MINUS      &kp STAR  &kp FSLH
-&kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LCTRL  &kp UNDERSCORE  &kp LESS_THAN    &kp GREATER_THAN  &kp EQUAL  &kp COMMA      &kp DOT   &kp COLON
+&kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp CARET  &kp UNDERSCORE  &kp LESS_THAN    &kp GREATER_THAN  &kp EQUAL  &kp COMMA      &kp DOT   &kp COLON
 &kp SQT               &kp DOUBLE_QUOTES      &kp PIPE   &kp TILDE       &kp EXCLAMATION  &kp AT            &kp GRAVE  &kp AMPERSAND  &kp SEMI  &kp QUESTION
                                              &none      &kp DOLLAR      &kp BACKSLASH    &none             &none      &none          &none
             >;
