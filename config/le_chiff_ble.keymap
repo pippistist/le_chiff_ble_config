@@ -5,6 +5,7 @@
  */
 
 #include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 
 // makes it possible to hold backspace
@@ -71,6 +72,16 @@
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
         };
+
+        pplt: pplt {
+            compatible = "zmk,behavior-hold-tap";
+            label = "PPLT";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <5000>;
+            hold-while-undecided;
+        };
     };
 
     keymap {
@@ -79,66 +90,57 @@
         default {
             label = "colemak-pippy";
             bindings = <
-&kp LSHFT  &kp W  &kp C   &kp F         &kp B         &kp P       &kp L         &kp U   &kp Y        &kp LCTRL
-&kp A      &kp R  &kp S   &kp T         &kp G         &kp M       &kp N         &kp E   &kp I        &kp O
-&kp J      &kp Z  &kp Q   &kp D         &kp LGUI      &kp LALT    &kp H         &kp V   &kp K        &kp X
-                  &kp N1  &kp NUMBER_2  &kp NUMBER_3  &kp C_MUTE  &kp NUMBER_4  &kp N5  &bootloader
+&kp LSHFT  &kp W  &kp C  &kp F  &kp B     &kp P       &kp L          &kp U           &kp Y  &kp LCTRL
+&kp A      &kp R  &kp S  &kp T  &kp G     &kp M       &kp N          &kp E           &kp I  &kp O
+&kp J      &kp Z  &kp Q  &kp D  &kp LGUI  &kp LALT    &kp H          &kp V           &kp K  &kp X
+                  &none  &mo 4  &mo 2     &kp C_MUTE  &pplt 1 SPACE  &kp LEFT_SHIFT  &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
-        layer_1 {
+        symbol_layer {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&kp LEFT_BRACE        &kp RIGHT_BRACE        &kp LBKT   &kp RBKT        &kp POUND        &kp PERCENT       &kp PLUS   &kp MINUS      &kp STAR  &kp FSLH
+&kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LCTRL  &kp UNDERSCORE  &kp LESS_THAN    &kp GREATER_THAN  &kp EQUAL  &kp COMMA      &kp DOT   &kp COLON
+&kp SQT               &kp DOUBLE_QUOTES      &kp PIPE   &kp TILDE       &kp EXCLAMATION  &kp AT            &kp GRAVE  &kp AMPERSAND  &kp SEMI  &kp QUESTION
+                                             &none      &kp DOLLAR      &kp BACKSLASH    &none             &none      &none          &none
             >;
         };
 
-        layer_2 {
+        function_layer {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&kp TAB  &none  &kp LGUI   &kp LALT   &kp ESC  &kp PG_UP  &kp HOME      &kp UP    &kp END        &kp DEL
+&mo 3    &none  &kp LCTRL  &kp LSHFT  &kp RET  &kp PG_DN  &kp LEFT      &kp DOWN  &kp RIGHT      &kp BSPC
+&kp TAB  &none  &none      &none      &none    &none      &kp LC(LEFT)  &none     &kp LC(RIGHT)  &kp RET
+                &none      &mo 5      &none    &none      &none         &none     &none
             >;
         };
 
-        layer_3 {
+        number_layer {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&none  &kp F1  &kp F2   &kp F3   &kp F4   &kp LS(PRCNT)  &kp N7  &kp N8  &kp N9  &kp DEL
+&none  &kp F5  &kp F6   &kp F7   &kp F8   &none          &kp N4  &kp N5  &kp N6  &kp BSPC
+&none  &kp F9  &kp F10  &kp F11  &kp F12  &kp N0         &kp N1  &kp N2  &kp N3  &kp DOT
+               &none    &none    &none    &none          &none   &none   &none
             >;
         };
 
-        layer_4 {
+        shortcut_layer {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&kp LS(TAB)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LC(FSLH)  &none  &none  &none  &none  &kp CAPSLOCK
+&kp LC(A)    &kp LC(S)  &kp LA(A)  &kp LC(F)  &kp LA(S)     &none  &none  &none  &none  &none
+&kp LC(Z)    &kp LC(Y)  &none      &none      &kp LG(L)     &none  &none  &none  &none  &none
+                        &none      &none      &none         &none  &none  &none  &none
             >;
         };
 
         layer_5 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans  &trans  &trans
-            >;
-        };
-
-        layer_6 {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &none       &none  &none  &none  &none
+&none         &none         &none         &none         &none           &none       &none  &none  &none  &none
+&bt BT_CLR    &none         &none         &none         &bt BT_CLR_ALL  &sys_reset  &none  &none  &none  &bootloader
+                            &none         &none         &none           &none       &none  &none  &none
             >;
         };
     };
