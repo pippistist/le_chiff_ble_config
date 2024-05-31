@@ -45,6 +45,15 @@
             tapping-term-ms = <5000>;
             flavor = "tap-unless-interrupted";
         };
+
+        smart_shift: smart_shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "SMART_SHIFT";
+            bindings = <&kp RIGHT_SHIFT>, <&caps_word>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT)>;
+        };
     };
 
     keymap {
@@ -53,10 +62,10 @@
         default {
             label = "colemak-pippy";
             bindings = <
-&kp LSHFT  &kp W  &kp C                  &kp F  &kp B     &kp P       &kp L          &kp U           &kp Y  &kp LCTRL
-&kp A      &kp R  &kp S                  &kp T  &kp G     &kp M       &kp N          &kp E           &kp I  &kp O
-&kp J      &kp Z  &kp Q                  &kp D  &kp LGUI  &kp LALT    &kp H          &kp V           &kp K  &kp X
-                  &tui LEFT_SHIFT POUND  &mo 4  &mo 2     &kp C_MUTE  &pplt 1 SPACE  &kp LEFT_SHIFT  &none
+&kp LSHFT  &kp W  &kp C       &kp F  &kp B     &kp P       &kp L          &kp U           &kp Y         &kp LCTRL
+&kp A      &kp R  &kp S       &kp T  &kp G     &kp M       &kp N          &kp E           &kp I         &kp O
+&kp J      &kp Z  &kp Q       &kp D  &kp LGUI  &kp LALT    &kp H          &kp V           &kp K         &kp X
+                  &kp LSHIFT  &mo 4  &mo 2     &kp C_MUTE  &pplt 1 SPACE  &kp LEFT_SHIFT  &smart_shift
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
