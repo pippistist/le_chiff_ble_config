@@ -13,7 +13,29 @@
 &lt { quick_tap_ms = <200>; };
 
 / {
-    combos { compatible = "zmk,combos"; };
+    combos {
+        compatible = "zmk,combos";
+
+        esc {
+            bindings = <&kp ESCAPE>;
+            key-positions = <10 11 12 13>;
+        };
+
+        alt_f4 {
+            bindings = <&kp LA(F4)>;
+            key-positions = <1 2 3 4>;
+        };
+
+        win_D {
+            bindings = <&kp LG(D)>;
+            key-positions = <20 22 21 23>;
+        };
+
+        enter {
+            bindings = <&kp ENTER>;
+            key-positions = <16 17 19 18>;
+        };
+    };
 
     behaviors {
         hm: homerow_mods {
